@@ -43,7 +43,6 @@ const Home = () => {
   }, [dispatch]);
   console.log("user here: ", user.uid);
 
-  // const API_URL = "http://localhost:7000/api/uploadImage/";
 
   const submitdata = async () => {
     setLoading(true);
@@ -88,14 +87,11 @@ const Home = () => {
 
     querySnapshot.forEach((doc) => {
       console.log(doc.data().shortenedUrl);
-      // setalldoc(doc.data.shortenedUrl);
       setimage(doc.data().shortenedUrl);
     });
-    // setimage(doc.data.shortenedUrl);
-    // console.log(alldoc.shortenedUrl);
+ 
   };
 
-  // console.log(alldoc);
   console.log(image);
 
   return (
