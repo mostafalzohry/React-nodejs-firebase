@@ -1,12 +1,8 @@
-import React, { useEffect, useState } from "react";
-// import Text from "../components/elements/Text";
+import React, { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { auth } from "../firebase";
 import { Formik, Field, Form, useFormik } from "formik";
-// import { Button, TextField, Typography, IconButton } from "@mui/material";
-// import VisibilityIcon from "@mui/icons-material/Visibility";
-// import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 
 const Signup = () => {
   const navigate = useNavigate();
@@ -141,8 +137,7 @@ const Signup = () => {
                             />
                             <p className="text-xs" style={{ color: "red" }}>
                               {errors.firstName &&
-                                touched.firstName &&
-                                errors.firstName}
+                                touched.firstName }
                             </p>
                           </div>
 
@@ -161,8 +156,7 @@ const Signup = () => {
                             />
                             <p className="text-xs" style={{ color: "red" }}>
                               {errors.lastName &&
-                                touched.lastName &&
-                                errors.lastName}
+                                touched.lastName}
                             </p>
                           </div>
 
@@ -181,7 +175,7 @@ const Signup = () => {
                             />
 
                             <p className="text-xs" style={{ color: "red" }}>
-                              {errors.email && touched.email && errors.email}
+                              {errors.email && touched.email}
                             </p>
                           </div>
 
@@ -201,8 +195,7 @@ const Signup = () => {
 
                             <p className="text-xs" style={{ color: "red" }}>
                               {errors.password &&
-                                touched.password &&
-                                errors.password}
+                                touched.password }
                             </p>
                           </div>
 
@@ -261,239 +254,4 @@ const Signup = () => {
 };
 
 export default Signup;
-
-
-
-// import Avatar from '@mui/material/Avatar';
-// import Button from '@mui/material/Button';
-// import CssBaseline from '@mui/material/CssBaseline';
-// import TextField from '@mui/material/TextField';
-// import FormControlLabel from '@mui/material/FormControlLabel';
-// import Checkbox from '@mui/material/Checkbox';
-// import Link from '@mui/material/Link';
-// import Paper from '@mui/material/Paper';
-// import Box from '@mui/material/Box';
-// import Grid from '@mui/material/Grid';
-// import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
-// import Typography from '@mui/material/Typography';
-// import { createTheme, ThemeProvider } from '@mui/material/styles';
-// import React, { useEffect, useState } from "react";
-// import Text from "../components/elements/Text";
-// import { NavLink, useNavigate } from "react-router-dom";
-// import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
-// import { auth } from "../firebase";
-// import { Formik, Field, Form } from "formik";
-// function Copyright(props) {
-//   return (
-//     <Typography variant="body2" color="text.secondary" align="center" {...props}>
-//       {'Copyright © '}
-//       <Link color="inherit" href="https://mui.com/">
-//         Your Website
-//       </Link>{' '}
-//       {new Date().getFullYear()}
-//       {'.'}
-//     </Typography>
-//   );
-// }
-
-
-// const defaultTheme = createTheme();
-
-// export default function Signup() {
-// //   const handleSubmit = (event) => {
-// //     event.preventDefault();
-// //     const data = new FormData(event.currentTarget);
-// //     console.log({
-// //       email: data.get('email'),
-// //       password: data.get('password'),
-// //     });
-// //   };
-
-//   const navigate = useNavigate();
-
-//   const [errors, setErrors] = useState("");
-//   const [loading, setLoading] = useState(false);
-
-//   const initialValues = {
-//     firstName: "",
-//     lastName: "",
-//     email: "",
-//     password: "",
-//     confirmPassword: "",
-//   };
-
-//   const validateForm = (values) => {
-//     const errors = {};
-
-//     if (!values.firstName) {
-//       errors.firstName = "First name is required";
-//     } else if (values.firstName.length <= 3) {
-//       errors.firstName = "Must be 3 characters or more";
-//     }
-
-//     if (!values.lastName) {
-//       errors.lastName = "Last name is required";
-//     } else if (values.lastName.length <= 3) {
-//       errors.lastName = "Must be 3 characters or more";
-//     }
-
-//     if (!values.email) {
-//       errors.email = "Email is required";
-//     } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)) {
-//       errors.email = "Invalid email address";
-//     }
-
-//     if (!values.password) {
-//       errors.password = "Password number is required";
-//     } else if (values.password.length <= 8) {
-//       errors.password = "Password length must be more than 7";
-//     }
-
-//     if (values.password !== values.confirmPassword) {
-//       errors.password = "Password does not match!";
-//     }
-
-//     return errors;
-//   };
-
-//   const onSubmitSignupForm = async (values) => {
-//     setLoading(true);
-//     await createUserWithEmailAndPassword(auth, values.email, values.password)
-//       .then((userCredential) => {
-//         // Signed in
-//         setLoading(false);
-//         const user = userCredential.user;
-//         console.log(user);
-//         navigate("/");
-//         // ...
-//       })
-//       .catch((error) => {
-//         const errorCode = error.code;
-//         const errorMessage = error.message;
-//         setErrors(errorMessage);
-//         setLoading(false);
-//         console.log(errorCode, errorMessage);
-//         // ..
-//       });
-
-//     await updateProfile(auth.currentUser, {
-//       displayName: `${values.firstName} ${values.lastName}`,
-//     })
-//       .then(() => {
-//         console.log("updated successfully");
-//       })
-//       .catch((error) => {
-//         console.log("error updating name");
-//         console.log(error);
-//       });
-//   };
-
-//   return (
-//       <Grid container component="main" sx={{ height: '100vh' }}>
-//         <CssBaseline />
-//         <Grid
-//           item
-//           xs={false}
-//           sm={4}
-//           md={7}
-//           sx={{
-//             backgroundImage: 'url(https://source.unsplash.com/random?wallpapers)',
-//             backgroundRepeat: 'no-repeat',
-//             backgroundColor: (t) =>
-//               t.palette.mode === 'light' ? t.palette.grey[50] : t.palette.grey[900],
-//             backgroundSize: 'cover',
-//             backgroundPosition: 'center',
-//           }}
-//         />
-//         <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
-//           <Box
-//             sx={{
-//               my: 8,
-//               mx: 4,
-//               display: 'flex',
-//               flexDirection: 'column',
-//               alignItems: 'center',
-//             }}
-//           >
-//             <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-//               <LockOutlinedIcon />
-//             </Avatar>
-//             <Typography component="h1" variant="h5">
-//               Sign up
-//             </Typography>
-//             {/* <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }}> */}
-
-//             <Formik
-//                     initialValues={initialValues}
-//                     validate={validateForm}
-//                     onSubmit={(values) => onSubmitSignupForm(values)}
-//                   >
-//                     {({
-//                       values,
-//                       errors,
-//                       touched,
-//                       handleChange,
-//                       handleBlur,
-//                       handleSubmit,
-//                       isSubmitting,
-//                     }) => (
-//                       <Form className="mt-8 space-y-6">
-//               <TextField
-//                 margin="normal"
-//                 required
-//                 fullWidth
-//                 id="email"
-//                 label="Email Address"
-//                 name="email"
-//                 autoComplete="email"
-//                 value={values.email}
-//                                      onChange={handleChange}
-//                 autoFocus
-//               />
-//               <TextField
-//                 margin="normal"
-//                 required
-//                 fullWidth
-//                 name="password"
-//                 label="Password"
-//                 type="password"
-//                 id="password"
-//                 autoComplete="current-password"
-//                 value={values.password}
-//                                onChange={handleChange}
-//               />
-//               <FormControlLabel
-//                 control={<Checkbox value="remember" color="primary" />}
-//                 label="Remember me"
-//               />
-//               <Button
-//                 type="submit"
-//                 fullWidth
-//                 variant="contained"
-//                 sx={{ mt: 3, mb: 2 }}
-//               >
-//                 Sign up
-//               </Button>
-//               <Grid container>
-//                 <Grid item xs>
-//                   <Link href="#" variant="body2">
-//                     Forgot password?
-//                   </Link>
-//                 </Grid>
-//                 <Grid item>
-//                   <Link href="#" variant="body2">
-//                     {"Don't have an account? Sign Up"}
-//                   </Link>
-//                 </Grid>
-//               </Grid>
-//               <Copyright sx={{ mt: 5 }} />
-//             {/* </Box> */}
-//             </Form>
-//                     )}
-//                   </Formik>
-//           </Box>
-//         </Grid>
-//       </Grid>
-//   );
-// }
 

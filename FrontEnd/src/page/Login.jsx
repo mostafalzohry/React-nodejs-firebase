@@ -38,12 +38,10 @@ const Login = () => {
     setLoading(true);
     signInWithEmailAndPassword(auth, values.email, values.password)
       .then((userCredential) => {
-        // console.log(object)
-        // Signed in
+      
         setLoading(false);
         const user = userCredential.user;
         navigate("/home");
-        // console.log(user);
       })
       .catch((error) => {
         const errorCode = error.code;
@@ -107,7 +105,7 @@ const Login = () => {
                             />
 
                             <p className="text-xs" style={{ color: "red" }}>
-                              {errors.email && touched.email && errors.email}
+                              {errors.email && touched.email}
                             </p>
                           </div>
 
@@ -126,9 +124,7 @@ const Login = () => {
                             />
 
                             <p className="text-xs" style={{ color: "red" }}>
-                              {errors.password &&
-                                touched.password &&
-                                errors.password}
+                              {errors.password && touched.password}
                             </p>
                           </div>
                         </div>
