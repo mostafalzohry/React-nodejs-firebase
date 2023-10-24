@@ -12,7 +12,6 @@ import {
   where,
   getDocs,
 } from "firebase/firestore/lite";
-
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -92,7 +91,9 @@ const Home = () => {
             <div>
               <Text className="font-bold text-2xl">Stay focused</Text>
 
-              {!image && (
+              {image ?
+              <img src={image} width={100} height={100} />
+              :
                 <>
                   <input
                     type="file"
@@ -103,8 +104,8 @@ const Home = () => {
                     {loading ? "loading ..." : " submit "}
                   </Button>
                 </>
-              )}
-              {image && <img src={image} width={100} height={100} />}
+}
+           
             </div>
           </section>
         </Card>
