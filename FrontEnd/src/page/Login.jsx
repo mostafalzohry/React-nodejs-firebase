@@ -4,7 +4,6 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../firebase";
 import { NavLink, useNavigate } from "react-router-dom";
 import { Formik, Field, Form } from "formik";
-import signup from "../components/assets/bg-login.jpg";
 
 const Login = () => {
   const navigate = useNavigate();
