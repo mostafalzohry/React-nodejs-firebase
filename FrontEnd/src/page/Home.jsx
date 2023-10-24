@@ -2,13 +2,9 @@ import React, { useState, useEffect, useRef } from "react";
 import Card from "../components/elements/Card";
 import Text from "../components/elements/Text";
 import Button from "../components/elements/Button";
-import { onAuthStateChanged } from "firebase/auth";
-import { auth, db, analytics } from "../firebase";
 import { useDispatch, useSelector } from "react-redux";
 import { getCurrentUser } from "../store/features/userSlice";
-import { useNavigate } from "react-router-dom";
 import axios from "axios";
-
 import {
   getFirestore,
   collection,
@@ -28,16 +24,10 @@ const Home = () => {
 
   const dispatch = useDispatch();
 
-  const navigate = useNavigate();
 
   const [file, setfile] = useState();
 
-  useEffect(() => {
-    const intervalID = setInterval(() => {}, 1000);
-
-    return () => clearInterval(intervalID);
-  }, []);
-
+  
   useEffect(() => {
     dispatch(getCurrentUser());
   }, [dispatch]);
@@ -75,7 +65,6 @@ const Home = () => {
 
   const db = getFirestore();
   const [image, setimage] = useState();
-  const [alldoc, setalldoc] = useState();
   useEffect(() => {
     fetchData();
   }, [image]);
@@ -92,7 +81,6 @@ const Home = () => {
  
   };
 
-  console.log(image);
 
   return (
     <section className="text-white pt-10 pb-24 px-3  md:pt-10 md:pb-20">
